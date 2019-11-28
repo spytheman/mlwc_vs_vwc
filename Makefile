@@ -4,6 +4,16 @@ V ?= /v/nv/v
 VCC ?= clang-7
 MLTON ?= /opt/mlton/bin/mlton
 
+benchmark: showversions sourcestats clean build binstats run_once
+	hyperfine --warmup 10 \
+    './vwc_dev     cinderella.txt' \
+    './vwc_prod    cinderella.txt' \
+    './mlwc_c      cinderella.txt' \
+    './mlwc_llvm   cinderella.txt' \
+    './mlwc_amd64  cinderella.txt' \
+    './mlwc_native cinderella.txt' \
+    'wc cinderella.txt'
+
 build: mlwc_all vwc_all
 
 mlwc_all: mlwc_c mlwc_llvm mlwc_amd64 mlwc_native
@@ -21,16 +31,6 @@ vwc_dev: v/wc.v
 	time $(V) -cc $(VCC) -o vwc_dev v/wc.v
 vwc_prod: v/wc.v
 	time $(V) -cc $(VCC) -prod -o vwc_prod v/wc.v
-
-benchmark: showversions sourcestats clean build binstats run_once
-	hyperfine --warmup 10 \
-    './vwc_dev     cinderella.txt' \
-    './vwc_prod    cinderella.txt' \
-    './mlwc_c      cinderella.txt' \
-    './mlwc_llvm   cinderella.txt' \
-    './mlwc_amd64  cinderella.txt' \
-    './mlwc_native cinderella.txt' \
-    'wc cinderella.txt'
 
 run_once:
 	wc            cinderella.txt
