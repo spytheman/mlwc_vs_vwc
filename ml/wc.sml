@@ -1,3 +1,5 @@
+(* Source author (bitmapper on v's discord server): https://gist.github.com/bitmappergit/cb8d00eecf7edcbfdd193fc8e0585aca *)
+
 datatype result = T | F | N
 
 fun isWs (SOME x) = (case (Char.isSpace x) of true => T | false => F)
