@@ -13,4 +13,16 @@ You need to have:
 When you have all these, clone this repo, cd into your clone, and type:
 `V=/path_to_your_v VCC=/path_to_C99_compiler MLTON=/path_to_mlton  make`
 
-Interpret the results however you like :-)
+Interpret the results however you like ;-)
+
+On my machine after everything is benchmarked:
+-------------------------------------------------------------------
+Summary
+  './vwc_prod    cinderella.txt' ran
+    1.63 ± 0.10 times faster than './mlwc_llvm   cinderella.txt'
+    1.94 ± 0.10 times faster than './mlwc_amd64  cinderella.txt'
+    1.95 ± 0.11 times faster than './mlwc_native cinderella.txt'
+    2.09 ± 0.12 times faster than './mlwc_c      cinderella.txt'
+    2.16 ± 0.12 times faster than 'wc            cinderella.txt'
+    4.72 ± 0.23 times faster than './vwc_dev     cinderella.txt'
+
