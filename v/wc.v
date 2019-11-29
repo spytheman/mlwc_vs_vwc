@@ -1,8 +1,5 @@
 import os
 
-fn C.isspace(int) int
-fn C.isprint(int) int
-
 struct State {
 mut:
   was_nl bool
@@ -10,7 +7,8 @@ mut:
 }
 
 [inline] fn is_nl(c byte)    bool { return (c == `\n`) }
-[inline] fn is_wordchar(c byte) bool { return C.isprint(c)!=0 && C.isspace(c)==0 }
+// taken from musl's isprint && isspace source:
+[inline] fn is_wordchar(c byte) bool { return (c-0x20 < 0x5f) && !(c == ` ` || (c - `\t`) < 5 ) } 
 
 fn main(){
   data := os.read_file(os.args[1]) or { panic(err) }
