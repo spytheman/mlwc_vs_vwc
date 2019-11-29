@@ -15,8 +15,8 @@ When you have all these, clone this repo, cd into your clone, and type:
 
 Interpret the results however you like ;-)
 
-On my machine after everything is benchmarked:
--------------------------------------------------------------------
+On an i3, after everything, hyperfine shows:
+```
 Summary
   './vwc_prod    cinderella.txt' ran
     1.63 ± 0.10 times faster than './mlwc_llvm   cinderella.txt'
@@ -25,4 +25,4 @@ Summary
     2.09 ± 0.12 times faster than './mlwc_c      cinderella.txt'
     2.16 ± 0.12 times faster than 'wc            cinderella.txt'
     4.72 ± 0.23 times faster than './vwc_dev     cinderella.txt'
-
+```
