@@ -11,7 +11,8 @@ mut:
 [inline] fn is_wordchar(c byte) bool { return (c-0x20 < 0x5f) && !(c == ` ` || (c - `\t`) < 5 ) } 
 
 fn main(){
-  data := os.read_file(os.args[1]) or { panic(err) }
+  file := os.args[1]
+  data := os.read_file(file) or { panic(err) }
   chars := &byte(data.str)
   
   total := data.len
@@ -27,5 +28,5 @@ fn main(){
       ostate = nstate
   }
   
-  println('$newlines $words $total')
+  println('$newlines $words $total $file')
 }
