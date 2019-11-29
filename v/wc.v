@@ -8,7 +8,7 @@ mut:
 }
 
 [inline] fn is_nl(c byte)    bool { return (c == `\n`) }
-[inline] fn is_space(c byte) bool { return (c == ` ` || c == `\t` ) }
+[inline] fn is_ws(c byte)    bool { return (c == ` ` || c == `\t` ) }
 [inline] fn is_alnum(c byte) bool { return (c >= `a` && c <= `z`) || (c>=`A` && c<= `Z`) }
 
 fn main(){
@@ -23,7 +23,7 @@ fn main(){
   mut ostate := State{ was_nl: true }
   for i := 0; i < total; i++ {
       c := chars[i]
-      nstate := State{ was_nl: is_nl(c) was_space: is_space(c) was_alnum: is_alnum(c) }
+      nstate := State{ was_nl: is_nl(c) was_space: is_ws(c) was_alnum: is_alnum(c) }
       if nstate.was_nl { newlines++ }
       if nstate.was_space { spaces++ }
       if !ostate.was_alnum && nstate.was_alnum  { words++ }
